@@ -1,0 +1,215 @@
+/* #1 logo animation */
+@keyframes growLogo {
+    from {
+      width: 25px;
+      opacity: 0;
+    }
+    to {
+      width: 475px;
+      opacity: 1;
+    }
+  }
+
+  #logo {
+    animation: growLogo 5s forwards;
+  }
+
+
+/* #2 edit the body tag to use the Poppins font and a background image. */
+body{
+    font-family: 'Poppins', sans-serif;
+    background-image: url(../images/concrete_seamless.png);
+    background-color: #f1f1f1;
+}
+
+
+/* #3 Edit the css for the header tag (all instances) to use flex to match our example. */
+
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+}
+
+body > header:first-of-type {
+    margin-bottom: 20px;
+}
+
+/* #4 Edit nav_links */
+.nav_links{
+    display: flex;
+    flex-direction: column;
+}
+
+/* #5 Style the links so that they have the same color even after they have been visited. */
+.nav_links a, .nav_links a:visited {
+    color: #0000EE;
+}
+
+
+/* #6 Style ONLY those header elements that are direct children of a card class. */
+.card > header{
+    background: #288088;
+    border: 2px solid #45ADAD;
+    padding: 20px 0;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+}
+
+
+/* #7 and #8 adjust card and princing class*/
+/* in Items-container(.pricing), justify-items is not a valid property in flex, use justify-content */
+/* flex-container:display:flex,flex-direction,flex-wrap, align-items, justify-content */
+/* flex-items:flex-basis, align-self */
+.card {
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 50px;
+    border-top-right-radius: 50px;
+    flex-basis: 450px;
+}
+
+.pricing{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+
+
+/* #9 style images in the gallery class. */
+/* object-fit:cover / object-fit:fill */
+.gallery img{
+    object-fit: fill;
+    border: 10px solid #50C7C7;
+    margin: 10px;
+    width: 300px;
+}
+
+
+/* #10 style the gallery class */
+.gallery{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+
+
+
+/* 900px screen */
+
+@media screen and (min-width: 900px){
+    /* #11 Edit the css for the header tag (all instances) and the nav_links class. Use flex properties, NOT position properties. */
+    header{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .nav_links{
+        display: flex;
+        flex-direction: row;
+    }
+
+    /* #12 Edit the css for the pricing and card classes to match our example. Part of achieving this is by using a flex-property to specify a “size” of 275px. */
+    .card {
+        display: flex;
+        flex-direction: column;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        flex-basis: 275px;
+    }
+
+    .pricing{
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* #13 Modify the first header (the one not inside main) so it remains on top when scroll down*/
+    body > header:first-of-type {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+    }
+    /* avoid overlapping with the content */
+    body {
+        padding-top: 110px;
+    }
+}
+
+
+
+
+/* reduced motion */
+
+/* #14 The logo should appear but not be animated if prefers-reduced-motion is selected in the accessibility preferences. */
+
+@media screen and (prefers-reduced-motion: reduce) {
+    #logo {
+        animation: none;
+    }
+}
+
+
+
+
+/* when the page is printed in portrait mode */
+
+
+@media print {
+    /* #15 and #16 Change the font on your body and remove background image */
+    body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-image: none;
+    }
+
+
+    /* #17 Edit the nav/nav_links elements*/
+
+    nav, .nav_links {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        width: 100%;
+    }
+
+
+    /* #18 Edit the pricing class so that the elements align along the bottom */
+    .pricing {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end; /* Aligns items along the bottom */
+    }
+
+
+    /* #19 The card elements should have a solid border 2px of #45ADDD and use flex-basis of 325px.  */
+    .card {
+        display: flex;
+        flex-direction: column;
+        border-top-left-radius: 50px;
+        border-top-right-radius: 50px;
+        flex-basis:215px;
+        border: #45ADDD 2px solid;
+    }
+
+
+    /* #20 No part of the gallery should be visible. */
+    #gallery {
+        display: none;
+    }
+
+    .gallery {
+        display: none;
+    }
+
+
+    /* #21 Without using list-style-type add the thumbs up entity as shown in the cards. This is a challenge problem. You should not give or receive help when completing it.**For some people the thumbs up is not printing as yellow. That is fine. */
+    .card ul li:nth-child(2)::after {
+        content: "\1F44D"; /* Unicode for thumbs up */
+    }
+}
